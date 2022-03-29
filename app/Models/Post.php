@@ -2,25 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\PostTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, PostTrait;
 
     protected $fillable = ['title', 'slug', 'status', 'description', 'notification_status', 'user_id'];
-
-    /**
-     * @return \Closure
-     */
-    protected static function onCreated(): \Closure
-    {
-        return function ($post) {
-            $post->slug = Str::slug($post->title);
-        };
-    }
 
     public function subscribers()
     {

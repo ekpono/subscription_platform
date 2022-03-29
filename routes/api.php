@@ -4,6 +4,10 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubscriberController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function() {
+   return response()->json(['message' => 'Api works']);
+});
+
 Route::group(['prefix' => 'posts'], function() {
     Route::get('/', [PostController::class, 'index']);
     Route::get('/{post}', [PostController::class, 'show']);
