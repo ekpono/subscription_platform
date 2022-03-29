@@ -40,9 +40,10 @@ class SendNewPostNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                     ->line('Thank you for subscribing to our newsletter')
-                    ->action('Read more', url('/'))
-                    ->line('Thank you for using our application!')
                     ->line( new HtmlString($this->post->description) )
-                    ->subject('NEWSLETTER: ' . $this->post->title);
+                    ->action('Read more', url('/'))
+                    ->subject('NEWSLETTER: ' . $this->post->title)
+                    ->line('Thank you for using our application!');
+
     }
 }

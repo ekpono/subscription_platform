@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Website;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -17,7 +18,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence,
             'slug' => $this->faker->slug,
             'description' => $this->faker->text,
-            'user_id' => 1
+            'website_id' => Website::factory()
         ];
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('status', ['published', 'draft'])->default('published');
             $table->longText('description');
             $table->enum('notification_status', ['sent', 'processing', 'failed'])->default('processing');
-            $table->foreignId('user_id');
+            $table->foreignId('website_id');
 
             $table->softDeletes();
             $table->timestamps();

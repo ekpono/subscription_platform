@@ -11,26 +11,16 @@ class Post extends Model
 {
     use HasFactory, PostTrait;
 
-    protected $fillable = ['title', 'slug', 'status', 'description', 'notification_status', 'user_id'];
+    protected $fillable = ['title', 'slug', 'status', 'description', 'notification_status', 'website_id'];
 
-    public function subscribers()
+    public function website()
     {
-        return $this->belongsToMany(User::class, 'subscribers', 'post_id', 'user_id');
-    }
-
-    public function users()
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Website::class);
     }
 
     protected static function boot() {
         parent::boot();
 
         static::creating(self::onCreated());
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }

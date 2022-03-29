@@ -27,7 +27,7 @@ class ValidatePostRequest extends FormRequest
             'title' => 'required|unique:posts|string|min:5|max:255',
             'status' => 'nullable|in:published,draft',
             'description' => 'required|min:10',
-            'user_id' => 'required|exists:users,id'
+            'website_id' => 'required|exists:websites,id'
         ];
     }
 }

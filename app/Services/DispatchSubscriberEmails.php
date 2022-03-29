@@ -16,13 +16,16 @@ class DispatchSubscriberEmails
 {
     public function handle()
     {
-        $processingPost = Post::where('notification_status', Config::get('constant.notification.processing'))->get();
+        $processingPost = Post::where('notification_status', Config::get('constant.notification.processing'))
+            ->with('website')
+            ->get();
+
 
         foreach($processingPost as $post) {
 
-            if(empty($post->subscribers)) return;
+            if(empty($post->website->subscribers)) return;
 
-            foreach($post->subscribers as $subscriber) {
+            foreach($post->website->subscribers as $subscriber) {
 
                 if (Cache::has("post-sent-$subscriber->id-$post->id")) {
                     //Already sent
